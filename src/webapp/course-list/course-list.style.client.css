@@ -1,0 +1,159 @@
+#label-course-manager {
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#top-nav-bar,#hamburger-top-left {
+    background-color: #3989F9;
+}
+
+#hamburger-top-left, #label-course-manager, .fas.fa-plus.fa-stack-1x {
+    color: white;
+}
+
+.fas.fa-circle.fa-stack-2x{
+    color:red;
+}
+
+.form-control-lg.wbdv-field.wbdv-new-course::placeholder {
+    opacity: 1; 
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.form-control-lg.wbdv-field.wbdv-new-course {
+    margin-right: 10px;
+}
+
+#top-search-bar::placeholder {
+    color: #DBF3FF;
+}
+#top-search-bar{
+    border: 0em;
+    background-color: #6199F6;
+}
+
+#top-search-form {
+    padding-right: 120px;
+}
+
+#top-nav-bar-sm,#hamburger-top-left-sm {
+    background-color: white;
+}
+
+#hamburger-top-left-sm {
+    color: #585858;
+}
+
+#top-search-bar-sm::placeholder {
+    color: #585858;
+}
+
+#top-search-form-sm {
+    padding-right: 40px;
+}
+#second-nav-bar,#top-nav-bar,#top-nav-bar-sm{
+    position: fixed;
+    width: 100%;   
+}
+
+#top-nav-bar,#top-nav-bar-sm {
+    margin-top: 0px;
+    z-index: 100;
+}
+#second-nav-bar {
+    margin-top: 70px;
+    height:65px;
+    background:#F0F0F0;
+    z-index: 99;
+}
+
+#second-bar-title,#second-bar-own {
+    font-weight: 700;
+    font-size: large;
+}
+#second-bar-modify {
+    font-weight: 500;
+    font-size: small;
+}
+#second-bar-title,#second-bar-own,#second-bar-modify,.nav-bar-button,.wbdv-sort {
+    color: #686868;
+}
+
+body { 
+    background: #F0F0F0;
+    overflow-x: hidden;
+}
+
+#delete-row-sign {
+    font-size: large;
+    font-weight: 600;
+}
+
+#lists-container {
+    margin-right: 0rem;
+    scroll-padding-right: 0rem;
+}
+
+.wbdv-course-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.wbdv-modified-date,.wbdv-row.wbdv-owner{
+    color: #808080;
+}
+
+.wbdv-title {
+    font-weight: 600;
+}
+.date-block {
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    color: #686868;
+}
+.wbdv-row.wbdv-icon.friends-icon {
+    color: #686868;
+}
+
+#red-white-little-plus{
+    width:4.5rem;
+    height:4.5rem;
+    position:fixed;
+    bottom: 2rem;
+    right: 2.5rem;
+    z-index: 101;
+    box-shadow: 5px 5px 2px grey;
+    border-radius: 90%;
+    background-color: #db4437; 
+    /* By setting background the same color to clear the white margin*/
+}
+
+.list-group-item:hover {
+    background-color: #f9ffe6;
+}
+
+#course-login {
+    position:fixed;
+    width: 2rem;
+    height:1rem;
+    bottom: 11rem;
+    right: 2.5rem;
+    z-index: 101;
+}
+
+#course-register {
+    position:fixed;
+    width:2rem;
+    height:1rem;
+    bottom: 13rem;
+    right: 2.5rem;
+    z-index: 101;
+}
+
+a .wbdv-row.wbdv-title {
+    color: #282828;
+}

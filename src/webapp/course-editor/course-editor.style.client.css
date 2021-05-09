@@ -1,0 +1,197 @@
+#zzx-collapsible-nav-button  {
+    border-color: transparent;
+}
+
+#zzx-top-nav-bar,#zzx-top-nav-bar-list .nav-item {
+    font-size: 1.5rem;
+    background-color: #454b4f;
+}
+
+#zzx-top-nav-bar-list .nav-item .btn {
+    color: #afb2b4;
+    font-size: 1em;
+    margin-top: 0.01em;
+    margin-bottom: 0.01em;
+    margin-right: 0.01em;
+    margin-left: 0.01em;
+}
+
+#zzx-top-nav-bar-list .nav-item .btn:active {
+    background-color: #373c3f;
+}
+
+#zzx-top-right-plus-link, .zzx-bar-top-left-delete .btn {
+    font-weight: 800;
+    color: white;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+
+.zzx-bar-top-left-brand {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.zzx-left-lists {
+    background-color: #4b5154;
+    color: white;
+}
+
+.zzx-left-lists:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+
+#zzx-course-list {
+    background-color: #363e3b;
+}
+#zzx-course-list-background {
+    background-color: #363e3b;
+    height:100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.zzx-left-list-delete {
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.zzx-left-lists a {
+    color: white;
+}
+
+.zzx-left-lists-add {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.zzx-h-topics,.zzx-h-topics-add {
+    background-color: #7a7a7a;
+    border: none;
+    margin-top: 1.5rem;
+    color: white;
+    font-size: 1.2rem;
+    
+}
+
+.zzx-h-topics {
+    width: 7rem;
+    height: 2rem;
+    font-weight: 600;
+}
+.zzx-h-topics-add {
+    width: 2rem;
+    height: 2rem;
+    font-weight: 800;
+}
+
+.zzx-h-topics:active,.zzx-h-topics:hover {
+    background-color: #444444;
+}
+
+.zzx-toggle {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-top: 1rem;
+    margin-right: 1rem;
+}
+
+#zzx-save-link {
+    margin-top: 1.5rem;
+    margin-right: 1rem;
+}
+
+#zzx-save-badge {
+    margin-top: 0.1rem;
+    margin-right: 0.1rem;
+    height:  1.9rem;
+    width: 3.2rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+#zzx-preview {
+    margin-top: 1.4rem;
+    margin-right: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.fas.fa-plus-circle {
+    color: white;
+}
+.fas.fa-square.zzx-square-under-circle-plus {
+    color: #dc3545;
+}
+#zzx-sm-white-lg-red-plus-circle {
+    font-size: 1rem;
+}
+#zzx-container-form {
+    border:1px solid #ACACAC;
+}
+
+.fa-square.zzx-square-under-arrow {
+    color: #ffc107;
+}
+
+.fa-arrow-up, .fa-arrow-down {
+    font-size: 0.7rem;
+    color: black;
+}
+
+.fa-stack.zzx-square-arrow,.fa-stack.zzx-square-times{
+    font-size: 1rem;
+    border: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+.fa-stack.fa-2x.zzx-square-arrow {
+    position: relative;
+    right: 0px;
+}
+.fas.fa-times.fa-stack-1x {
+    color: white
+}
+.zzx-square-under-times {
+    color: #dc3545;
+}
+.zzx-select-top-right {
+    margin-top: 5px;
+    margin-bottom: 2px;
+    height: 2rem;
+    font-size: 1rem;
+    padding-top: 0px;
+}
+#zzx-top-left-heading-widget {
+    font-size: 1.6rem;
+    font-weight: 650;
+}
+#form-select-headings,#zzx-heading-text {
+    font-weight: 450;
+}
+
+#zzx-preview-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+#zzx-heading-text-body {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+#zzx-course-list,#zzx-course-list-background {
+    height:100vh;
+}

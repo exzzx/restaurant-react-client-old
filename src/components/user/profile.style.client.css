@@ -1,0 +1,14 @@
+.alert-message-font {
+    font-weight:bold;
+}
+.wbdv-button.wbdv-logout, .wbdv-button.wbdv-update{
+    border: none;
+}
+
+.wbdv-button.wbdv-update, .wbdv-button.wbdv-update:active{
+    background-color: forestgreen;
+}
+
+.wbdv-button.wbdv-logout, .wbdv-button.wbdv-logout:active{
+    background-color: crimson;
+}

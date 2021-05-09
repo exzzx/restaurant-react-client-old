@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page and Course List</title>
+    <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link 
+      rel="stylesheet" 
+      href="course-list.style.client.css"
+    />
+    <script src="https://kit.fontawesome.com/94a8fa8e19.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+      // since the requirement only allows to submit HTML and CSS file,
+      // I keep the content that should be in js file here in HTML file.
+      $(document).ready(function(){
+        $("#wbdv-list-button").css("display", "none");
+        $("#wbdv-sort-up").css("display", "none");
+        let buttonFlag = true;
+        let sortFlag = true;
+        $(".nav-bar-button").click(function(){
+          if(buttonFlag){
+            $("#wbdv-list-button").css("display", "block");
+            $("#wbdv-grid-button").css("display", "none");
+            buttonFlag = false;
+        } else {
+            $("#wbdv-grid-button").css("display", "block");
+            $("#wbdv-list-button").css("display", "none");
+            buttonFlag = true;
+        }
+        })
+        $(".wbdv-sort").click(function(){
+          if(buttonFlag){
+            $("#wbdv-sort-up").css("display", "block");
+            $("#wbdv-sort-down").css("display", "none");
+            buttonFlag = false;
+        } else {
+            $("#wbdv-sort-down").css("display", "block");
+            $("#wbdv-sort-up").css("display", "none");
+            buttonFlag = true;
+        }
+        })
+        // dynamically top-pad the body so that nav-bar will not hide the body.
+        let dynamicToppadding = function() {
+          if($(window).width() < 752){
+            $("#lists-container").css("padding-top", "5rem");
+          } else {
+            $("#lists-container").css("padding-top", "9rem");
+          }
+        }
+        dynamicToppadding();
+
+        let resizeTimeout;
+        $(window).resize(function(){
+          if(resizeTimeout){
+            clearTimeout(resizeTimeout);
+          }
+          resizeTimeout = setTimeout(
+            dynamicToppadding
+          , 1)
+        })
+        });
+    </script>
+</head>
+
+<body>
+  <div class="container">
+    <a class="wbdv-button wbdv-add-course" href="">
+      <img src="..\img\RedCircleWhiteLittlePlus.png" alt="RedCircleWhiteLittlePlus picture" id="red-white-little-plus">
+    </a>
+  </div>
+  <div id="course-login">
+    <a href="../../components/login/login.template.client.html" class="badge badge-primary">
+      Login
+    </a>
+    <a href="../user-admin/user-admin.template.client.html">user-admin/user-admin.template.client.html</a>
+  </div>
+  <div id="course-register">
+    <a href="../../components/register/register.template.client.html" class="badge badge-primary">
+      Sign Up
+    </a>
+  </div>
+  <nav class="navbar navbar-dark d-none d-md-block" id="top-nav-bar">
+    <!-- Hamburger here includes Hamburger icon and the button under it. -->
+          <div class="d-flex flex-grow-1">
+          <div class="navbar-nav" >
+            <button class="btn wbdv-field wbdv-hamburger">
+            <i class="fas fa-bars fa-2x" id="hamburger-top-left"></i>
+          </button>
+          </div>
+          <div class="navbar-brand">
+            <label for="" class="wbdv-label wbdv-course-manager" id="label-course-manager">
+              Course Manager
+            </label>
+          </div>
+          
+          <form action="" class="w-100 navbar-search" id="top-search-form">
+          <div class="input-group" id="top-search-bar-outer">
+            <input type="text" class="form-control form-control-lg wbdv-field wbdv-new-course" id="top-search-bar" placeholder="New Course Title">
+            <a href="" class="wbdv-button wbdv-add-course navbar-nav d-flex justify-content-center">
+              <div style="font-size: 1.5rem;">
+              <span class="fa-stack fa-1x">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-plus fa-stack-1x"></i>
+              </span>
+              </div>
+            </a>
+          </div> 
+          </form>
+          </div>
+  </nav>
+
+  <nav class="navbar navbar-dark d-block d-md-none" id="top-nav-bar-sm">
+    <!-- Hamburger here includes Hamburger icon and the button under it. -->
+          <div class="d-flex flex-grow-1">
+          <div class="navbar-nav">
+          <button class="btn wbdv-field wbdv-hamburger">
+            <i class="fas fa-bars fa-2x" id="hamburger-top-left-sm"></i>
+          </button>
+          </div>
+          <form action="" class="w-100 navbar-search" id="top-search-form-sm">
+          <div class="input-group" id="top-search-bar-outer-sm">
+            <input type="text" class="form-control form-control-lg wbdv-field wbdv-new-course" id="top-search-bar-sm" placeholder="New Course Title">
+            <a href="" class="navbar-nav d-flex justify-content-center">
+              <div style="font-size: 1.5rem;">
+              <span class="fa-stack fa-1x">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-plus fa-stack-1x"></i>
+              </span>
+              </div>
+            </a>
+          </div> 
+          </form>
+          </div>
+  </nav>
+<div class="d-none d-md-block">
+  <nav class="nav navbar-light shadow-sm align-items-center" id="second-nav-bar">
+    <div class="col-1"></div>
+    <a class="nav-item nav-link col-4 d-flex wbdv-header wbdv-title" href="#" id="second-bar-title">Title</a>
+    <a class="nav-item nav-link col-3 d-flex justify-content-center wbdv-header wbdv-owner" href="#" id="second-bar-own">
+      Owned By  &nbsp;&nbsp;
+      <i class="fas fa-caret-down"></i>
+    </a>
+    <div class="col-4 d-flex">
+      <a class="nav-item nav-link wbdv-header wbdv-last-modified" href="#" id="second-bar-modify">Last modified by me</a>
+      <button class="btn wbdv-button wbdv-grid-layout nav-bar-button" type="button" id="wbdv-grid-button">
+        <i class="fas fa-grip-horizontal fa-1x"></i>
+      </button>
+      <button class="btn wbdv-button wbdv-list-layout nav-bar-button" type="button" id="wbdv-list-button">
+        <i class="fas fa-th-list fa-1x"></i>
+      </button>
+      <a class="nav-item nav-link wbdv-header wbdv-sort " href="#" id="wbdv-sort-up">
+        <i class="fas fa-sort-alpha-up fa-1x"></i>
+      </a>
+      <a class="nav-item nav-link wbdv-header wbdv-sort " href="#" id="wbdv-sort-down">
+        <i class="fas fa-sort-alpha-down fa-1x"></i>
+      </a>
+    </div>
+  </nav>
+</div>
+<div class="container-fluid px-0 mx-0" id="lists-container">
+<div class="row">
+<div class="col-md-1">
+
+</div>
+<div class="col-md-10 mr-0 pr-0 mr-md-3 pr-md-3">
+<div class="today-list">
+  <div class="date-block">
+    &nbsp;Today
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row wbdv-row wbdv-course">
+        <div class="col-10 col-xs-11 col-md-6">
+          <span class="wbdv-row wbdv-icon">
+            <img src="..\img\CourseRowIcon.PNG" class="wbdv-course-icon" alt="Course title icon">
+          </span>
+          <a href="../course-editor/course-editor.template.client.html">
+          <span class="wbdv-row wbdv-title"> 
+            <span id="course-title-number">
+              &nbsp; CS5500
+            </span>
+             Softeware Engineering 
+          </span>
+          </a>
+        </div>
+        <div class="d-none d-md-block col-md-3 wbdv-row wbdv-owner">
+          me
+        </div>
+        <div class="d-none d-md-block col-md-2 wbdv-row wbdv-modified-date">
+          6:45PM
+        </div>
+        <div class="col-1 justify-content-end pr-0 mr-0 text-right text-md-center">
+          <button class="btn wbdv-row wbdv-button wbdv-delete py-0 px-0 mr-0" id="delete-row-sign-button">
+            <span id="delete-row-sign">
+              X
+            </span>
+          </button>
+        </div>
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <div class="row wbdv-row wbdv-course">
+        <div class="col-10 col-xs-11 col-md-6">
+          <span class="wbdv-row wbdv-icon">
+            <img src="..\img\CourseRowIcon.PNG" class="wbdv-course-icon" alt="Course title icon">
+          </span>
+          <a href="../course-editor/course-editor.template.client.html">
+          <span class="wbdv-row wbdv-title"> 
+            <span id="course-title-number">
+              &nbsp; CS5800
+            </span>
+             Algorithms
+          </span>
+          </a>
+        </div>
+        <div class="d-none d-md-block col-md-3 wbdv-row wbdv-owner">
+          me
+        </div>
+        <div class="d-none d-md-block col-md-2 wbdv-row wbdv-modified-date">
+          6:45PM
+        </div>
+        <div class="col-1 justify-content-end pr-0 mr-0 text-right text-md-center">
+          <button class="btn wbdv-row wbdv-button wbdv-delete py-0 px-0">
+            <span id="delete-row-sign">
+              X
+            </span>
+          </button>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row wbdv-row wbdv-course">
+        <div class="col-10 col-xs-11 col-md-6">
+          <span class="wbdv-row wbdv-icon">
+            <img src="..\img\CourseRowIcon.PNG" class="wbdv-course-icon" alt="Course title icon">
+          </span>
+          <a href="../course-editor/course-editor.template.client.html">
+          <span class="wbdv-row wbdv-title"> 
+            <span id="course-title-number">
+              &nbsp; CS5610
+            </span>
+             Web Development
+             <span class="wbdv-row wbdv-icon friends-icon">
+              <i class="fas fa-user-friends fa-1x"></i>
+             </span>
+          </span>
+          </a>
+        </div>
+        <div class="d-none d-md-block col-md-3 wbdv-row wbdv-owner">
+          me
+        </div>
+        <div class="d-none d-md-block col-md-2 wbdv-row wbdv-modified-date">
+          6:45PM
+        </div>
+        <div class="col-1 justify-content-end pr-0 mr-0 text-right text-md-center">
+          <button class="btn wbdv-row wbdv-button wbdv-delete py-0 px-0">
+            <span id="delete-row-sign">
+              X
+            </span>
+          </button>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row wbdv-row wbdv-course">
+        <div class="col-10 col-xs-11 col-md-6">
+          <span class="wbdv-row wbdv-icon">
+            <img src="..\img\CourseRowIcon.PNG" class="wbdv-course-icon" alt="Course title icon">
+          </span>
+          <a href="../course-editor/course-editor.template.client.html">
+          <span class="wbdv-row wbdv-title"> 
+            <span id="course-title-number">
+              &nbsp; CS5700
+            </span>
+             Computer Networks
+          </span>
+          </a>
+        </div>
+        <div class="d-none d-md-block col-md-3 wbdv-row wbdv-owner">
+          me
+        </div>
+        <div class="d-none d-md-block col-md-2 wbdv-row wbdv-modified-date">
+          6:45PM
+        </div>
+        <div class="col-1 justify-content-end pr-0 mr-0 text-right text-md-center">
+          <button class="btn wbdv-row wbdv-button wbdv-delete py-0 px-0">
+            <span id="delete-row-sign">
+              X
+            </span>
+          </button>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row wbdv-row wbdv-course">
+        <div class="col-10 col-xs-11 col-md-6">
+          <span class="wbdv-row wbdv-icon">
+            <img src="..\img\CourseRowIcon.PNG" class="wbdv-course-icon" alt="Course title icon">
+          </span>
+          <a href="../course-editor/course-editor.template.client.html">
+          <span class="wbdv-row wbdv-title"> 
+            <span id="course-title-number">
+              &nbsp; CS5200
+            </span>
+             Intro to Database
+             <span class="wbdv-row wbdv-icon friends-icon">
+              <i class="fas fa-user-friends fa-1x"></i>
+             </span>
+          </span>
+          </a>
+        </div>
+        <div class="d-none d-md-block col-md-3 wbdv-row wbdv-owner">
+          me
+        </div>
+        <div class="d-none d-md-block col-md-2 wbdv-row wbdv-modified-date">
+          6:45PM
+        </div>
+        <div class="col-1 justify-content-end pr-0 mr-0 text-right text-md-center">
+          <button class="btn wbdv-row wbdv-button wbdv-delete py-0 px-0">
+            <span id="delete-row-sign">
+              X
+            </span>
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="yesterday-list">
+  <div class="date-block">
+    &nbsp;Yesterday
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row wbdv-row wbdv-course">
+        <div class="col-10 col-xs-11 col-md-6">
+          <span class="wbdv-row wbdv-icon">
+            <img src="..\img\CourseRowIcon.PNG" class="wbdv-course-icon" alt="Course title icon">
+          </span>
+          <a href="../course-editor/course-editor.template.client.html">
+          <span class="wbdv-row wbdv-title"> 
+            <span id="course-title-number">
+              &nbsp; WEBDEV-2
+            </span>
+              React
+             <span class="wbdv-row wbdv-icon friends-icon">
+              <i class="fas fa-user-friends fa-1x"></i>
+             </span>
+          </span>
+          </a>
+        </div>
+        <div class="d-none d-md-block col-md-3 wbdv-row wbdv-owner">
+          me
+        </div>
+        <div class="d-none d-md-block col-md-2 wbdv-row wbdv-modified-date">
+          May 4, 2018
+        </div>
+        <div class="col-1 justify-content-end pr-0 mr-0 text-right text-md-center">
+          <button class="btn wbdv-row wbdv-button wbdv-delete py-0 px-0">
+            <span id="delete-row-sign">
+              X
+            </span>
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="prev-seven-days-list"> 
+  <div class="date-block">
+    &nbsp;Previous seven days
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row wbdv-row wbdv-course">
+        <div class="col-10 col-xs-11 col-md-6">
+          <span class="wbdv-row wbdv-icon">
+            <img src="..\img\CourseRowIcon.PNG" class="wbdv-course-icon" alt="Course title icon">
+          </span>
+          <a href="../course-editor/course-editor.template.client.html">
+          <span class="wbdv-row wbdv-title"> 
+            <span id="course-title-number">
+              &nbsp; WEBDEV
+            </span>
+              Syllabus
+             <span class="wbdv-row wbdv-icon friends-icon">
+              <i class="fas fa-user-friends fa-1x"></i>
+             </span>
+          </span>
+          </a>
+        </div>
+        <div class="d-none d-md-block col-md-3 wbdv-row wbdv-owner">
+          me
+        </div>
+        <div class="d-none d-md-block col-md-2 wbdv-row wbdv-modified-date">
+          May 3, 2018
+        </div>
+        <div class="col-1 justify-content-end pr-0 mr-0 text-right text-md-center">
+          <button class="btn wbdv-row wbdv-button wbdv-delete py-0 px-0">
+            <span id="delete-row-sign">
+              X
+            </span>
+          </button>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row wbdv-row wbdv-course">
+        <div class="col-10 col-xs-11 col-md-6">
+          <span class="wbdv-row wbdv-icon">
+            <img src="..\img\CourseRowIcon.PNG" class="wbdv-course-icon" alt="Course title icon">
+          </span>
+          <a href="../course-editor/course-editor.template.client.html">
+          <span class="wbdv-row wbdv-title"> 
+            <span id="course-title-number">
+              &nbsp; WEBDEV-1
+            </span>
+              Javascript, Java, SQL
+             <span class="wbdv-row wbdv-icon friends-icon">
+              <i class="fas fa-user-friends fa-1x"></i>
+             </span>
+          </span>
+          </a>
+        </div>
+        <div class="d-none d-md-block col-md-3 wbdv-row wbdv-owner">
+          me
+        </div>
+        <div class="d-none d-md-block col-md-2 wbdv-row wbdv-modified-date">
+          May 3, 2018
+        </div>
+        <div class="col-1 justify-content-end pr-0 mr-0 text-right text-md-center">
+          <button class="btn wbdv-row wbdv-button wbdv-delete py-0 px-0">
+            <span id="delete-row-sign">
+              X
+            </span>
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+</div>
+<div class="col-md-1">
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

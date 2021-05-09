@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Course Editor</title>
+    <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link 
+      rel="stylesheet" 
+      href="course-editor.style.client.css"
+    />
+    <script src="https://kit.fontawesome.com/94a8fa8e19.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+      // since the requirement only allows to submit HTML and CSS file,
+      // I keep the content that should be in js file here in HTML file.
+      $(document).ready(function(){
+        let clickFlag = true;
+        $("#zzx-collapsible-nav-button").click(function(){
+            if(clickFlag){
+                $("#zzx-top-left-delete-button").css("display", "none");
+                clickFlag = false;
+            } else {
+                setTimeout(()=>$("#zzx-top-left-delete-button").css("display","block"), 400);
+                clickFlag = true;
+            }
+        });
+        let toggleFlag = false;
+        $(".zzx-toggle-on").css("display", "none");
+        $(".zzx-toggle").click(function(){
+            if(toggleFlag){
+                $(".zzx-toggle-on").css("display", "none");
+                $(".zzx-toggle-off").css("display","block");
+                toggleFlag = false;
+            } else {
+                $(".zzx-toggle-on").css("display","block")
+                $(".zzx-toggle-off").css("display", "none");
+                toggleFlag = true;
+            }
+        });
+        let setLeftContainerHeight = function(){
+            $("#zzx-course-list").css("height",$("html").height());
+            $("#zzx-course-list-background").css("height",$("html").height());
+        }
+        setLeftContainerHeight();
+        $(window).resize(
+            setLeftContainerHeight()
+        );
+      });
+    </script>
+</head>
+
+<body>
+      <div class="container-fluid">
+        <span class="row">
+            <nav class="navbar navbar-dark navbar-expand-md col-12" id="zzx-top-nav-bar">
+                <div class="d-flex flex-grow-1">
+                    <button class="navbar-toggler" id="zzx-collapsible-nav-button" type="button" data-toggle="collapse" data-target="#zzx-collapsible-nav" aria-controls="zzx-collapsible-nav" aria-expanded="false">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="d-none d-lg-block col-lg-1 zzx-bar-top-left-delete wbdv-course-editor wbdv-close" >
+                        <button class="btn" id="zzx-top-left-delete-button-lg">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="d-block d-lg-none ml-auto zzx-bar-top-left-delete wbdv-course-editor wbdv-close" >
+                        <button class="btn" id="zzx-top-left-delete-button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <div class="d-none d-lg-block col-lg-3 zzx-bar-top-left-brand mt-2">
+                        <div class="nav-brand wbdv-course-title">
+                            CS5610 - Web Dev
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-around  justify-content-end col-md-11 col-lg-8" id="zzx-collapsible-nav">
+                    <ul class="navbar-nav" id="zzx-top-nav-bar-list">
+                        <li class="nav-item mr-1 wbdv-page-tab">
+                        <button class="btn" >Build</button>
+                        </li>
+                        <li class="nav-item mr-1 wbdv-page-tab">
+                        <button class="btn" >Pages</button>
+                        </li>
+                        <li class="nav-item mr-1 wbdv-page-tab">
+                        <button class="btn" >Theme</button>
+                        </li>
+                        <li class="nav-item mr-1 wbdv-page-tab">
+                        <button class="btn" >Store</button>
+                        </li>
+                        <li class="nav-item mr-1 wbdv-page-tab">
+                        <button class="btn" >Apps</button>
+                        </li>
+                        <li class="nav-item mr-1 wbdv-page-tab">
+                        <button class="btn" >Settings</button>
+                        </li>
+                        <li class="nav-item d-none d-md-block wbdv-new-page-btn">
+                        <button class="btn"  id="zzx-top-right-plus-link">
+                            +
+                        </button>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+                
+            </nav>  
+
+        </div>
+
+        <div class="row">
+            <div class="container col-4 h-100 px-4 py-4" id="zzx-course-list-background">
+                <div id="zzx-course-list">
+                    <div class="list-group wbdv-module-list"> 
+
+                        <span class="wbdv-module-item list-group-item zzx-left-lists d-flex justify-content-between mx-2 my-2">
+                            <a href="#" class="wbdv-module-item-title">
+                                Module 1 jQuery
+                            </a>
+                        <button class="zzx-left-list-delete wbdv-module-item-delete-btn">
+                            X
+                        </button>
+                        </span>
+                        <span class="wbdv-module-item list-group-item  zzx-left-lists d-flex justify-content-between mx-2 my-2">
+                            <a href="#" class="wbdv-module-item-title">
+                                Module 2 React
+                            </a>
+                        <button class="zzx-left-list-delete wbdv-module-item-delete-btn">
+                            X
+                        </button>
+                        </span>
+
+                        <span class="wbdv-module-item list-group-item  zzx-left-lists d-flex justify-content-between mx-2 my-2">
+                            <a href="#" class="wbdv-module-item-title">
+                                Module 3 Redux
+                            </a>
+                        <button class="zzx-left-list-delete wbdv-module-item-delete-btn">
+                            X
+                        </button>
+                        </span>
+                        <span class="wbdv-module-item list-group-item  zzx-left-lists d-flex justify-content-between mx-2 my-2">
+                            <a href="#" class="wbdv-module-item-title">
+                                Module 4 Native
+                            </a>
+                        <button class="zzx-left-list-delete wbdv-module-item-delete-btn">
+                            X
+                        </button>
+                        </span>
+                        <span class="wbdv-module-item list-group-item  zzx-left-lists d-flex justify-content-between mx-2 my-2">
+                            <a href="#" class="wbdv-module-item-title">
+                                Module 5 Angular
+                            </a>
+                        <button class="zzx-left-list-delete wbdv-module-item-delete-btn">
+                            X
+                        </button>
+                        </span>
+                        <span class="wbdv-module-item list-group-item  zzx-left-lists d-flex justify-content-between mx-2 my-2">
+                            <a href="#" class="wbdv-module-item-title">
+                                Module 6 Node
+                            </a>
+                        <button class="zzx-left-list-delete wbdv-module-item-delete-btn">
+                            X
+                        </button>
+                        </span>
+                        <span class="d-flex justify-content-end zzx-left-lists-add">
+                            <button class="zzx-left-lists-add wbdv-module-item-add-btn">
+                                +
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8"> 
+                <div class="container">
+                    <div class="row">
+                        <span class="wbdv-topic-pill-list">
+                            <span class="col-5 col-xs-3 col-lg-2 wbdv-topic-pill">
+                                <button class="zzx-h-topics">
+                                    Topic 1
+                                </button>
+                            </span>
+                            <span class="col-5 col-xs-3 col-lg-2 wbdv-topic-pill">
+                                <button class="zzx-h-topics">
+                                    Topic 2
+                                </button>
+                            </span>
+                            <span class="col-5 col-xs-3 col-lg-2 wbdv-topic-pill">
+                                <button class="zzx-h-topics">
+                                    Topic 3
+                                </button>
+                            </span>
+                            <span class="col-5 col-xs-2 col-lg-2 wbdv-topic-pill">
+                                <button class="zzx-h-topics">
+                                    Topic 4
+                                </button>
+                            </span>
+                        </span>
+                        <span class="col-12 col-lg-1">
+                            <button class="zzx-h-topics-add wbdv-topic-add-btn">
+                                +
+                            </button>
+                        </span>
+                        <span class="col-lg-3 d-none d-lg-block"></span>
+                    </div>
+                    <div class="row">
+                        <span class="col-md-6 d-none d-md-block"></span>
+                        <span class="col-12 col-md-6 d-flex justify-content-end ml-auto" id="zzx-save-toggle">
+                            <a href="#" id="zzx-save-link">
+                                <div class="badge badge-success" id="zzx-save-badge">Save</div>
+                            </a>
+                            <span id="zzx-preview">
+                                Preview
+                            </span>
+                            <span class="zzx-toggle zzx-toggle-off">
+                                <i class="fas fa-toggle-off"></i>
+                            </span>
+                            <span class="zzx-toggle zzx-toggle-on">
+                                <i class="fas fa-toggle-on"></i>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="container-fluid mr-3" id="zzx-container-form">
+                            <form action="../../components/user/profile.template.client.html">
+                                <div class="form-group form-row justify-content-md-end my-0">
+                                    <span class="mr-auto" id="zzx-top-left-heading-widget">
+                                        Heading widget
+                                    </span>
+                                    
+                                    <a href="#" class="zzx-square-arrow-link">
+                                        <span class="fa-stack fa-2x zzx-square-arrow">
+                                            <i class="fas fa-square fa-stack-2x zzx-square-under-arrow"></i>
+                                            <i class="fas fa-arrow-up fa-stack-1x zzx-fa-arrow"></i>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="zzx-square-arrow-link">
+                                        <span class="fa-stack fa-2x zzx-square-arrow">
+                                            <i class="fas fa-square fa-stack-2x zzx-square-under-arrow"></i>
+                                            <i class="fas fa-arrow-down fa-stack-1x zzx-fa-arrow"></i>
+                                        </span>
+                                    </a>
+                                    <span>
+                                        <select class="custom-select zzx-select-top-right ml-2 ml-sm-0">
+                                            <option value="Heading" selected>Heading</option>
+                                            <option value="Preview">Preview</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </span>
+                                    <a href="#" class="zzx-square-arrow-link ml-auto ml-md-0">
+                                        <span class="fa-stack fa-2x zzx-square-times">
+                                            <i class="fas fa-square fa-stack-2x zzx-square-under-times"></i>
+                                            <i class="fas fa-times fa-stack-1x"></i>
+                                        </span>
+                                    </a>
+                                    
+                                </div>
+                                <div class="form-group form-row">
+                                        <div class="col-12">
+                                        <input class="form-control" id="zzx-heading-text"
+                                            value="Heading text">
+                                        </div>
+
+                                    </div>
+                                <div class="form-group form-row">
+                                    <div class="col-12 my-2">
+                                        <select class="custom-select" id="form-select-headings">
+                                            <option value="Heading1" selected>Heading 1</option>
+                                            <option value="Heading2">Heading 2</option>
+                                            <option value="Heading3">Heading 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group form-row">
+                                        <div class="col-12">
+                                        <input class="form-control" placeholder="Widget name">
+                                        </div>
+                                </div>
+                                
+                                <div class="form-group form-row">
+                                    <div class="col-12 mr-auto" id="zzx-preview-text">
+                                        Preview
+                                    </div>
+                                </div>
+                                <div class="form-group form-row">
+                                    <div class="col-12 mr-auto" id="zzx-heading-text-body">
+                                        Heading text
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="d-flex justify-content-end col-12">
+                            <a href="#">
+                                <span class="fa-stack fa-2x" id="zzx-sm-white-lg-red-plus-circle">
+                                    <i class="fas fa-square fa-stack-2x zzx-square-under-circle-plus"></i>
+                                    <i class="fas fa-plus-circle fa-stack-1x"></i>
+                                </span>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+      </div>
+    
+</body>
+</html>
